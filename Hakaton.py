@@ -1,4 +1,5 @@
 from cgitb import handler
+from codecs import BOM_UTF16
 from unicodedata import name
 import aiogram
 from aiogram import Bot, Dispatcher, executor, types
@@ -46,14 +47,22 @@ async def areplynswer_bt1(message: types.Message):
     await message.answer(f"Я Вас понял, {message.chat.first_name}. Выберите, пожалуйста, ваш отдел", reply_markup = keyboard2)
 
 @dp.message_handler(Text(equals='Анкета'))
-async def questionnaire(message: types.Message):
+async def questionnaire1(message: types.Message):
     keyboard3 = types.ReplyKeyboardMarkup(resize_keyboard=True)
     bt4 = types.KeyboardButton(text = 'MAN')
     bt5 = types.KeyboardButton(text = 'GIRL')
     keyboard3.add(bt4).add(bt5)
     await message.answer('Какой у вас пол?', reply_markup=keyboard3)
 
-@dp.message_handler()
+@dp.message_handler(Text(equals='MAN'or'GIRL'))
+async def questionnaire2(message: types.Message):
+    keyboard4 = types.ReplyKeyboardMarkup(resize_keyboard = True)
+    bt6 = types.KeyboardButton(text = 'Спорт')
+    bt7 = types.KeyboardButton(text = 'Шоппинг')
+    bt8 = types.KeyboardButton(text = 'Еда')
+    bt9 = types.KeyboardButton(text = 'IT')
+    keyboard4.add(bt6).add(bt7).add(bt8).add(bt9)
+    await message.answer('Чем вы любите увлекаться в свободное время?', reply_markup= keyboard4)
 
     
 
