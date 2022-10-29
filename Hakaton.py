@@ -52,7 +52,7 @@ async def cancel_command(message: types.Message, state: FSMContext ):
 @dp.message_handler(commands=['start'])
 async def start_command(message: types.Message) -> None:
     await message.answer(f'Привет, {message.chat.first_name} {message.chat.last_name}! Для начала нужно заполнить анкету, для этого нажми /create', reply_markup=kb1(create))
-    await message.answer()
+
     
 
 @dp.message_handler(commands=['create'])
@@ -94,6 +94,7 @@ async def load_hobbies(message: types.Message, state: FSMContext) -> None:
     async with state.proxy() as data:
         data['hobbies'] = message.text
         await bot.send_message(chat_id=message.from_user.id, text=f"Имя - {message.chat.first_name} {message.chat.last_name}\nОтдел - {data['department']}\nПол - {data['sex']}\nВозраст - {data['age']}\nХобби - {data['hobbies']}")
+        await message.answer('Ваша анкета успешно создана!',reply_markup=types.ReplyKeyboardRemove())    
     await state.finish()
         
 
