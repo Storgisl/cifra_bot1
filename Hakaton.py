@@ -35,16 +35,6 @@ def get_cancel_kb() -> ReplyKeyboardMarkup:
     kb.add(KeyboardButton('/cancel'))
 
     return kb
-#def kb2() -> ReplyKeyboardMarkup:
-#    kb = ReplyKeyboardMarkup(resize_keyboard=True)
-#    kb.add(KeyboardButton('Женский','Мужской'))
- #   return kb
-
-
-#def kb3()-> ReplyKeyboardMarkup:
-#    kb = ReplyKeyboardMarkup(resize_keyboard=True)
- #   kb.add(KeyboardButton('IT','Путешествия','Спорт','Музыка'))
- #   return kb
 
 class QuestionnaireStatesGroup(StatesGroup):
     department = State()
